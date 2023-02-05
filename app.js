@@ -4,7 +4,7 @@ import process from "process";
 import { readdirSync } from "fs";
 
 const app = express();
-const port = 3000;
+const port = 80;
 
 function getReportIndex(make) {
   return readdirSync(path.join(process.cwd(), `backend/data/${make}`));
