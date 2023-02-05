@@ -16,3 +16,4 @@ jobs:
         with:
           node-version: '18'
       - run: npm i
+      - run: pm2 restart car_scraper_data_api
