@@ -3,17 +3,15 @@ name: Deploy Backend
 on:
   push:
     branches:
-      - prod-backend
+      - main
 
 jobs:
   deploy:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: prod-backend
       - uses: actions/setup-node@v1
         with:
           node-version: '18'
-      - run: npm i
-      - run: npm start backend
+      - run: npm install --verbose
+      - run: pm2 restart car_scraper_data_api

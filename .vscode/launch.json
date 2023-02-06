@@ -6,7 +6,7 @@
   "configurations": [
   {
     "name": "Launch diffReports",
-    "program": "${workspaceFolder}/scripts/utils/diffReports.js",
+    "program": "${workspaceFolder}/src/reportGeneration/diffReports.js",
     "request": "launch",
     "skipFiles": [
       "<node_internals>/**"
@@ -20,7 +20,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/scripts/main.js"
+      "program": "${workspaceFolder}/src/main.js"
     }
   ]
 }
