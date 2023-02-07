@@ -6,16 +6,16 @@ import { readdirSync } from "fs";
 const app = express();
 const port = process.env.PORT || 3000;
 
-function getReportIndex(make) {
+function getReportIndex(make: string) {
   return readdirSync(path.join(process.cwd(), `data/${make}`));
 }
 
-function getReport({ make, reportId }) {
-  const reportName = getReportIndex(make)[reportId]
+function getReport({ make, reportId }: { make: string, reportId: string}) {
+  const reportName = getReportIndex(make)[parseInt(reportId)]
   return path.join(process.cwd(), `data/${make}/${reportName}`);
 }
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.send('hello world');
 });
 

@@ -1,26 +1,28 @@
-export function getReportId(report) {
+import { CarData } from "../searchParameters"
+
+export function getReportId(report: CarData[]) {
   let mileageSum = 0
   let priceSum = 0
   let distanceSum = 0
 
   report.forEach(car => {
-    mileageSum += car.mileage;
-    priceSum += car.price;
-    distanceSum += car.distance;
+    mileageSum += parseInt(car?.mileage || '');
+    priceSum += parseInt(car?.price || '');
+    distanceSum += parseInt(car?.distance || '');
   })
 
   return mileageSum + priceSum + distanceSum
 }
 
-export function getUsedCars(report) {
+export function getUsedCars(report: CarData[]) {
   return report.filter(car => car.type === 'Used')
 }
 
-export function sanitizeReport(report) {
+export function sanitizeReport(report: CarData[]) {
   return report.filter(car => car.price && car.mileage && car.distance)
 }
 
-export function sortReportsByLength(oldReport, newReport) {
+export function sortReportsByLength(oldReport: CarData[], newReport: CarData[]) {
   const largerReport =
   oldReport.length > newReport.length ? oldReport : newReport;
 
@@ -29,7 +31,7 @@ export function sortReportsByLength(oldReport, newReport) {
   return [smallerReport, largerReport]
 }
 
-export function isSameCar(carOne, carTwo) {
+export function isSameCar(carOne: CarData, carTwo: CarData) {
   return (
     carOne.mileage === carTwo.mileage &&
     carOne.link === carTwo.link &&
@@ -37,13 +39,13 @@ export function isSameCar(carOne, carTwo) {
   );
 }
 
-export function carIsInReport(car, report) {
+export function carIsInReport(car: CarData, report: CarData[]) {
   return report.some((reportCar) =>
   isSameCar(reportCar, car)
 );
 }
 
-export function carsNotInBoth(smallerReport, largerReport) {
+export function carsNotInBoth(smallerReport: CarData[], largerReport: CarData[]) {
   return largerReport.filter((largerReportCar) => {
     return !carIsInReport(largerReportCar, smallerReport)
   });

@@ -2,9 +2,10 @@ import { writeFileSync, mkdirSync, existsSync } from "fs";
 import path from "path";
 import process from "process";
 
-import { buildUrl, fetchData } from "./index.js";
+import { buildUrl, fetchData } from "./";
+import { cars, CarData, CarSearchParamsCollection } from "../searchParameters";
 
-function writeReport(data, carName) {
+function writeReport(data: CarData[], carName: string) {
   const dateTime = new Date().toLocaleString();
   const formattedDateTime = dateTime
     .replaceAll("/", "-")
@@ -21,12 +22,18 @@ function writeReport(data, carName) {
     JSON.stringify(data)
   );
 
-  console.log(`report written for ${carName}`)
+  console.log(`report written for ${carName}`);
 }
 
-export async function generateReports(carParameters) {
-  Object.keys(carParameters).forEach((car) => {
-    const url = buildUrl(carParameters[car]);
-    fetchData(url).then((data) => writeReport(data, car));
+export async function generateReports(
+  carParameters: CarSearchParamsCollection
+) {
+  Object.keys(carParameters).forEach((make) => {
+    const url = buildUrl(
+      carParameters[make as keyof CarSearchParamsCollection]
+    );
+    fetchData(url).then((data) => writeReport(data, make));
   });
 }
+
+generateReports(cars);
