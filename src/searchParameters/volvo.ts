@@ -23,7 +23,9 @@
 // &year_min=2022
 // &zip=27599'
 
-export const volvo = {
+import { CarSearchParams } from "./carDataTypes";
+
+export const volvo: CarSearchParams = {
   dealer_id: "",
   keyword: "",
   list_price_max: "",

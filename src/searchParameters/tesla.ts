@@ -1,4 +1,6 @@
-export const tesla = {
+import { CarSearchParams } from "./carDataTypes";
+
+export const tesla: CarSearchParams = {
   dealer_id: "",
   keyword: "",
   list_price_max: "",
@@ -11,7 +13,7 @@ export const tesla = {
   sort: "list_price",
   stock_type: "all",
   trims: ["tesla-model_3-performance"],
-  year_max: "2020",
+  year_max: 2020,
   year_min: "",
   zip: 27599,
 };
