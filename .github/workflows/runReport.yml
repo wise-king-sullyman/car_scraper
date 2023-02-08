@@ -25,3 +25,14 @@ jobs:
       - run: git add .
       - run: git commit -m "Run report"
       - run: git push origin main
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '18'
+      - run: npm install --verbose
+      - run: npm run clean
+      - run: npm run build
+      - run: pm2 restart car_scraper_data_api
