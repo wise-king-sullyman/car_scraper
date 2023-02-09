@@ -27,6 +27,7 @@ jobs:
       - run: git push origin main
   deploy:
     runs-on: self-hosted
+    needs: run_report
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v1
