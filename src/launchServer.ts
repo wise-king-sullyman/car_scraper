@@ -1,10 +1,13 @@
 import express from "express";
+import cors from 'cors';
 import path from "path";
 import process from "process";
 import { readdirSync } from "fs";
 
 const app = express();
-const port = process.env.PORT || 3000;
+// TODO: Add conditional cors settings for dev and prod
+app.use(cors({ origin: '*'}))
+const port = process.env.PORT || 3001;
 
 function getReportIndex(make: string) {
   return readdirSync(path.join(process.cwd(), `data/${make}`));
