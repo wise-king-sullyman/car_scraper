@@ -9,6 +9,10 @@ const app = express();
 app.use(cors({ origin: '*'}))
 const port = process.env.PORT || 3001;
 
+function getMakes() {
+  return readdirSync(path.join(process.cwd(), 'data'));
+}
+
 function getReportIndex(make: string) {
   return readdirSync(path.join(process.cwd(), `data/${make}`));
 }
@@ -19,7 +23,7 @@ function getReport({ make, reportId }: { make: string, reportId: string}) {
 }
 
 app.get("/", (_req, res) => {
-  res.send('hello world');
+  res.send(getMakes());
 });
 
 app.get("/:make", (req, res) => {
