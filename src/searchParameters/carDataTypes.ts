@@ -25,8 +25,8 @@ export interface CarSearchParams {
   zip: number;
 }
 
-export type Make = "tesla" | "volvo";
+export type Models = "model3" | "modelS" | "s60";
 
 export type CarSearchParamsCollection = {
-  [make in Make]: CarSearchParams;
+  [make in Models]: CarSearchParams;
 };

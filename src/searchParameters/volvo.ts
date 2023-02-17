@@ -25,7 +25,7 @@
 
 import { CarSearchParams } from "./carDataTypes";
 
-export const volvo: CarSearchParams = {
+export const s60: CarSearchParams = {
   dealer_id: "",
   keyword: "",
   list_price_max: "",
